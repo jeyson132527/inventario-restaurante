@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Lista de Compras</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-warning">
+
+            <div class="d-flex justify-content-between align-items-center">
+
+                <h3 class="mb-0">
+
+                    <i class="bi bi-cart4"></i>
+
+                    Lista de Productos por Comprar
+
+                </h3>
+
+                <a th:href="@{/dashboard}" class="btn btn-dark">
+
+                    <i class="bi bi-house-door"></i>
+
+                    Dashboard
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-bordered table-hover align-middle">
+
+                <thead class="table-dark">
+
+                <tr>
+
+                    <th>Código</th>
+                    <th>Producto</th>
+                    <th>Categoría</th>
+                    <th class="text-center">Stock Actual</th>
+                    <th class="text-center">Stock Mínimo</th>
+                    <th class="text-center">Comprar</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                <tr th:each="p : ${productos}"
+                    th:if="${kardexService.obtenerStockProducto(p.id) <= p.stockMinimo}">
+
+                    <td th:text="${p.codigo}"></td>
+
+                    <td th:text="${p.nombre}"></td>
+
+                    <td th:text="${p.categoria != null ? p.categoria.nombre : 'Sin categoría'}"></td>
+
+                    <td class="text-center fw-bold"
+                        th:text="${#numbers.formatDecimal(kardexService.obtenerStockProducto(p.id),1,2)}">
+                    </td>
+
+                    <td class="text-center"
+                        th:text="${#numbers.formatDecimal(p.stockMinimo,1,2)}">
+                    </td>
+
+                    <td class="text-center">
+
+                        <span class="badge bg-danger">
+
+                            <i class="bi bi-exclamation-triangle-fill"></i>
+
+                            Comprar
+
+                        </span>
+
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

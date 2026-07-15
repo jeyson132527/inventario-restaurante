@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Kardex</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between mb-3">
+
+        <h2>Kardex de Inventario</h2>
+
+        <a href="/" class="btn btn-secondary">
+
+            Volver
+
+        </a>
+
+    </div>
+
+    <table class="table table-bordered table-hover">
+
+        <thead class="table-dark">
+
+        <tr>
+
+            <th>Fecha</th>
+            <th>Movimiento</th>
+            <th>Producto</th>
+            <th>Entrada</th>
+            <th>Salida</th>
+            <th>Saldo</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        <tr th:each="m : ${movimientos}">
+
+            <td th:text="${m.fecha}"></td>
+
+            <td th:text="${m.movimiento}"></td>
+
+            <td th:text="${m.producto}"></td>
+
+            <td th:text="${m.entrada}"></td>
+
+            <td th:text="${m.salida}"></td>
+
+            <td class="fw-bold" th:text="${m.saldo}"></td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+
+</html>
