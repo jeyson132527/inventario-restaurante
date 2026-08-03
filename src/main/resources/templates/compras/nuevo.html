@@ -61,7 +61,8 @@
 
                     <div class="input-group">
 
-                        <select class="form-select"
+                        <select id="productoCompra"
+                                class="form-select"
                                 th:field="*{producto}"
                                 required>
 
@@ -381,6 +382,7 @@ document.getElementById("btnGuardarProducto").addEventListener("click", function
     datos.append("nombre", document.getElementById("nombre").value);
     datos.append("unidadMedida", document.getElementById("unidad").value);
     datos.append("stockMinimo", document.getElementById("stockMinimo").value);
+    datos.append("categoria.id", document.getElementById("categoria").value);
     datos.append("activo", true);
 
     fetch("/productos/guardar-modal", {
@@ -399,7 +401,7 @@ document.getElementById("btnGuardarProducto").addEventListener("click", function
 
     .then(data => {
 
-    const combo = document.querySelector("select[name='producto']");
+    const combo = document.getElementById("productoCompra");
 
     fetch("/productos/listar-json")
 
@@ -425,15 +427,11 @@ document.getElementById("btnGuardarProducto").addEventListener("click", function
 
                 option.text = producto.nombre;
 
-                if(producto.id === data.id){
-
-                    option.selected = true;
-
-                }
-
                 combo.appendChild(option);
 
             });
+
+            combo.value = data.id;
 
             document.getElementById("formProducto").reset();
 
