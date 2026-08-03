@@ -75,15 +75,16 @@
                         </select>
 
                         <button type="button"
-                                class="btn btn-primary"
-                                data-bs-toggle="modal"
-                                data-bs-target="#modalProducto">
+                            id="btnNuevoProducto"
+                            class="btn btn-primary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modalProducto">
 
-                            <i class="bi bi-plus-circle"></i>
+                          <i class="bi bi-plus-circle"></i>
 
-                            Nuevo Producto
+                               Nuevo Producto
 
-                        </button>
+                        </button>   
 
                     </div>
 
@@ -335,6 +336,42 @@
 </div>
 
 <script>
+  
+document.getElementById("btnNuevoProducto").addEventListener("click", function () {
+
+    fetch("/categorias/listar-json")
+
+        .then(response => response.json())
+
+        .then(categorias => {
+
+            const comboCategoria = document.getElementById("categoria");
+
+            comboCategoria.innerHTML = "";
+
+            const opcion = document.createElement("option");
+
+            opcion.value = "";
+
+            opcion.text = "Seleccione...";
+
+            comboCategoria.appendChild(opcion);
+
+            categorias.forEach(function(categoria){
+
+                const option = document.createElement("option");
+
+                option.value = categoria.id;
+
+                option.text = categoria.nombre;
+
+                comboCategoria.appendChild(option);
+
+            });
+
+        });
+
+});
 
 document.getElementById("btnGuardarProducto").addEventListener("click", function () {
 
@@ -362,9 +399,51 @@ document.getElementById("btnGuardarProducto").addEventListener("click", function
 
     .then(data => {
 
-        alert("Producto creado correctamente.");
+    const combo = document.querySelector("select[name='producto']");
 
-    })
+    fetch("/productos/listar-json")
+
+        .then(response => response.json())
+
+        .then(productos => {
+
+            combo.innerHTML = "";
+
+            const opcion = document.createElement("option");
+
+            opcion.value = "";
+
+            opcion.text = "Seleccione...";
+
+            combo.appendChild(opcion);
+
+            productos.forEach(function(producto){
+
+                const option = document.createElement("option");
+
+                option.value = producto.id;
+
+                option.text = producto.nombre;
+
+                if(producto.id === data.id){
+
+                    option.selected = true;
+
+                }
+
+                combo.appendChild(option);
+
+            });
+
+            document.getElementById("formProducto").reset();
+
+            bootstrap.Modal.getInstance(
+                document.getElementById("modalProducto")
+            ).hide();
+
+        });
+
+})
 
     .catch(error => {
 

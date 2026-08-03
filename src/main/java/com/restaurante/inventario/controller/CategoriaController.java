@@ -5,6 +5,9 @@ import com.restaurante.inventario.service.CategoriaService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/categorias")
@@ -45,5 +48,11 @@ public class CategoriaController {
         categoriaService.eliminar(id);
         return "redirect:/categorias";
     }
+  @GetMapping("/listar-json")
+@ResponseBody
+public ResponseEntity<List<Categoria>> listarJson() {
 
+    return ResponseEntity.ok(categoriaService.listar());
+
+}
 }

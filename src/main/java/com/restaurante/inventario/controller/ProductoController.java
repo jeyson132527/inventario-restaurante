@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 
 @Controller
 @RequestMapping("/productos")
@@ -130,5 +131,12 @@ public ResponseEntity<Map<String, Object>> guardarModal(
     respuesta.put("nombre", nuevo.getNombre());
 
     return ResponseEntity.ok(respuesta);
+}
+@GetMapping("/listar-json")
+@ResponseBody
+public List<Producto> listarJson() {
+
+    return productoService.listar();
+
 }
 }
