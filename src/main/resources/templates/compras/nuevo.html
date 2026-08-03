@@ -59,18 +59,33 @@
 
                     </label>
 
-                    <select class="form-select"
-                            th:field="*{producto}"
-                            required>
+                    <div class="input-group">
 
-                        <option value="">Seleccione...</option>
+                        <select class="form-select"
+                                th:field="*{producto}"
+                                required>
 
-                        <option th:each="producto : ${productos}"
-                                th:value="${producto.id}"
-                                th:text="${producto.nombre}">
-                        </option>
+                            <option value="">Seleccione...</option>
 
-                    </select>
+                            <option th:each="producto : ${productos}"
+                                    th:value="${producto.id}"
+                                    th:text="${producto.nombre}">
+                            </option>
+
+                        </select>
+
+                        <button type="button"
+                                class="btn btn-primary"
+                                data-bs-toggle="modal"
+                                data-bs-target="#modalProducto">
+
+                            <i class="bi bi-plus-circle"></i>
+
+                            Nuevo Producto
+
+                        </button>
+
+                    </div>
 
                 </div>
 
@@ -160,6 +175,9 @@
     </div>
 
 </div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
