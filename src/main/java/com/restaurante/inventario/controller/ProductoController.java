@@ -7,6 +7,9 @@ import com.restaurante.inventario.service.ProductoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/productos")
@@ -112,4 +115,20 @@ public class ProductoController {
         return "redirect:/productos";
     }
 
+@PostMapping("/guardar-modal")
+@ResponseBody
+public ResponseEntity<Map<String, Object>> guardarModal(
+        @ModelAttribute Producto producto) {
+
+    producto.setActivo(true);
+
+    Producto nuevo = productoService.guardar(producto);
+
+    Map<String, Object> respuesta = new HashMap<>();
+
+    respuesta.put("id", nuevo.getId());
+    respuesta.put("nombre", nuevo.getNombre());
+
+    return ResponseEntity.ok(respuesta);
+}
 }

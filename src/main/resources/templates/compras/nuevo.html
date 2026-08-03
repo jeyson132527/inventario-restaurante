@@ -176,7 +176,208 @@
 
 </div>
 
-<!-- Bootstrap JS -->
+<!-- ========================= -->
+<!-- MODAL NUEVO PRODUCTO -->
+<!-- ========================= -->
+
+<div class="modal fade"
+     id="modalProducto"
+     tabindex="-1"
+     aria-labelledby="modalProductoLabel"
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+
+            <div class="modal-header bg-primary text-white">
+
+                <h5 class="modal-title"
+                    id="modalProductoLabel">
+
+                    <i class="bi bi-box-seam"></i>
+
+                    Nuevo Producto
+
+                </h5>
+
+                <button type="button"
+                        class="btn-close btn-close-white"
+                        data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <form id="formProducto">
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+
+                            <label class="form-label">
+
+                                Código
+
+                            </label>
+
+                            <input type="text"
+                                   id="codigo"
+                                   class="form-control">
+
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+
+                            <label class="form-label">
+
+                                Nombre
+
+                            </label>
+
+                            <input type="text"
+                                   id="nombre"
+                                   class="form-control">
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+
+                            <label class="form-label">
+
+                                Categoría
+
+                            </label>
+
+                            <select id="categoria"
+                                    class="form-select">
+
+                                <option>
+
+                                    Seleccione...
+
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+
+                            <label class="form-label">
+
+                                Unidad de Medida
+
+                            </label>
+
+                            <input type="text"
+                                   id="unidad"
+                                   class="form-control">
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+
+                                Stock Mínimo
+
+                            </label>
+
+                            <input type="number"
+                                   step="0.01"
+                                   id="stockMinimo"
+                                   class="form-control">
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+
+                    Cancelar
+
+                </button>
+
+                <button type="button"
+                        id="btnGuardarProducto"
+                        class="btn btn-success">
+
+                    <i class="bi bi-check-circle"></i>
+
+                    Guardar Producto
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+document.getElementById("btnGuardarProducto").addEventListener("click", function () {
+
+    const datos = new URLSearchParams();
+
+    datos.append("codigo", document.getElementById("codigo").value);
+    datos.append("nombre", document.getElementById("nombre").value);
+    datos.append("unidadMedida", document.getElementById("unidad").value);
+    datos.append("stockMinimo", document.getElementById("stockMinimo").value);
+    datos.append("activo", true);
+
+    fetch("/productos/guardar-modal", {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+
+        body: datos
+
+    })
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        alert("Producto creado correctamente.");
+
+    })
+
+    .catch(error => {
+
+        alert("Error al guardar el producto.");
+
+        console.error(error);
+
+    });
+
+});
+
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
