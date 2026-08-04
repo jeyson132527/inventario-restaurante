@@ -10,4 +10,5 @@ import java.time.LocalDate;
 public interface ConsumoRepository extends JpaRepository<Consumo, Long> {
   List<Consumo> findTop5ByOrderByFechaDesc();
   long countByFecha(LocalDate fecha);
+  List<Consumo> findByProductoNombreContainingIgnoreCase(String nombre);
 }

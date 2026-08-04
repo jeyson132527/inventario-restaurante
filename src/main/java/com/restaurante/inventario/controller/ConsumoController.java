@@ -26,12 +26,17 @@ public class ConsumoController {
     }
 
     @GetMapping
-    public String listar(Model model) {
+        public String listar(
+        @RequestParam(required = false) String buscar,
+        Model model) {
 
-        model.addAttribute("consumos", consumoService.listar());
+            model.addAttribute("consumos",
+                    consumoService.buscar(buscar));
 
-        return "consumos/index";
-    }
+            model.addAttribute("buscar", buscar);
+
+            return "consumos/index";
+        }
 
     @GetMapping("/nuevo")
     public String nuevo(Model model) {
@@ -60,16 +65,7 @@ public class ConsumoController {
             return "consumos/nuevo";
         }
 
-        double stock = kardexService.obtenerStockProducto(
-        consumo.getProducto().getId());
-
-if (consumo.getCantidad() > stock) {
-
-    model.addAttribute("error",
-            "No existe suficiente stock.");
-
-    
-}
+        consumoService.guardar(consumo);
 
         return "redirect:/consumos";
     }

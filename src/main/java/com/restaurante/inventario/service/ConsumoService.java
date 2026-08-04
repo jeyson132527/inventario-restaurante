@@ -40,4 +40,16 @@ public class ConsumoService {
 
     }
 
+    public List<Consumo> buscar(String nombre){
+
+    if(nombre == null || nombre.isBlank()){
+
+        return repository.findAll();
+
+    }
+
+    return repository.findByProductoNombreContainingIgnoreCase(nombre);
+
+}   
+
 }

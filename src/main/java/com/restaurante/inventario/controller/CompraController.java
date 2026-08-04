@@ -22,15 +22,17 @@ public class CompraController {
     }
 
     @GetMapping
-    public String listar(
-            @RequestParam(required = false) String buscar,
-            Model model) {
+        public String listar(
+                @RequestParam(required = false) String buscar,
+                Model model) {
 
-        model.addAttribute("compras", compraService.buscar(buscar));
-        model.addAttribute("buscar", buscar);
+            model.addAttribute("compras",
+                    compraService.buscar(buscar));
 
-        return "compras/index";
-    }   
+            model.addAttribute("buscar", buscar);
+
+            return "compras/index";
+     } 
 
     @GetMapping("/nuevo")
     public String nuevo(Model model) {
@@ -67,5 +69,7 @@ public class CompraController {
 
         return "redirect:/compras";
     }
+
+    
 
 }

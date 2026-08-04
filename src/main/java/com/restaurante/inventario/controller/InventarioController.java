@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class InventarioController {
@@ -33,13 +34,20 @@ public class InventarioController {
     }
 
     @GetMapping("/inventario")
-    public String inventario(Model model) {
+        public String inventario(
+                @RequestParam(required = false) String buscar,
+                Model model) {
 
-        model.addAttribute("productos", productoService.listar());
-        model.addAttribute("kardexService", kardexService);
+        model.addAttribute("productos",
+                productoService.buscar(buscar));
+
+        model.addAttribute("buscar", buscar);
+
+        model.addAttribute("kardexService",
+                kardexService);
 
         return "inventario/index";
-    }
+        }
 
     @GetMapping("/inventario/excel")
     public ResponseEntity<InputStreamResource> exportarExcel() {

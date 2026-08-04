@@ -71,11 +71,24 @@
 
                 </div>
 
-                <input
-                        type="text"
-                        id="buscar"
-                        class="form-control w-25"
-                        placeholder="Buscar producto...">
+                <form th:action="@{/inventario}"
+      method="get"
+      class="d-flex">
+
+                    <input
+                            type="text"
+                            name="buscar"
+                            class="form-control me-2"
+                            th:value="${buscar}"
+                            placeholder="Buscar producto...">
+
+                    <button class="btn btn-success">
+
+                        <i class="bi bi-search"></i>
+
+                    </button>
+
+                </form>
 
             </div>
 
@@ -121,28 +134,34 @@
 
                     <td class="text-center">
 
-                        <span class="badge bg-success"
-                              th:if="${kardexService.obtenerStockProducto(p.id) > p.stockMinimo}">
+                    <span class="badge bg-success"
+                        th:if="${kardexService.obtenerStockProducto(p.id) > p.stockMinimo}">
 
-                            Disponible
+                        <i class="bi bi-check-circle-fill"></i>
 
-                        </span>
+                        Disponible
 
-                        <span class="badge bg-warning text-dark"
-                              th:if="${kardexService.obtenerStockProducto(p.id) == p.stockMinimo}">
+                    </span>
 
-                            Stock Mínimo
+                    <span class="badge bg-warning text-dark"
+                        th:if="${kardexService.obtenerStockProducto(p.id) == p.stockMinimo}">
 
-                        </span>
+                        <i class="bi bi-exclamation-circle-fill"></i>
 
-                        <span class="badge bg-danger"
-                              th:if="${kardexService.obtenerStockProducto(p.id) < p.stockMinimo}">
+                        Stock mínimo
 
-                            Stock Bajo
+                    </span>
 
-                        </span>
+                    <span class="badge bg-danger"
+                        th:if="${kardexService.obtenerStockProducto(p.id) < p.stockMinimo}">
 
-                    </td>
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+
+                        Reponer
+
+                    </span>
+
+                </td>
 
                 </tr>
 
@@ -171,23 +190,7 @@
 
 <script>
 
-const buscar = document.getElementById("buscar");
 
-buscar.addEventListener("keyup", function(){
-
-    let filtro = buscar.value.toLowerCase();
-
-    let filas = document.querySelectorAll("#tablaInventario tbody tr");
-
-    filas.forEach(fila=>{
-
-        let texto = fila.innerText.toLowerCase();
-
-        fila.style.display = texto.includes(filtro) ? "" : "none";
-
-    });
-
-});
 
 </script>
 
