@@ -30,11 +30,28 @@
 
         </span>
 
-        <span class="text-white">
+        <div class="d-flex align-items-center gap-3">
 
-            Jeyson Maldonado
+    <div class="text-end text-white">
 
-        </span>
+        <strong th:text="${session.nombre}"></strong>
+
+        <br>
+
+        <small th:text="${session.rol}"></small>
+
+    </div>
+
+    <a th:href="@{/logout}"
+       class="btn btn-outline-light btn-sm">
+
+        <i class="bi bi-box-arrow-right"></i>
+
+        Salir
+
+    </a>
+
+</div>
 
     </div>
 
@@ -81,6 +98,14 @@
                 <a href="/kardex" class="list-group-item list-group-item-action">
                     <i class="bi bi-journal-text"></i>
                     Kardex
+                </a>
+                
+                <a href="/usuarios" class="list-group-item list-group-item-action">
+
+                    <i class="bi bi-people-fill"></i>
+
+                    Usuarios
+
                 </a>
 
                 <a href="#" class="list-group-item list-group-item-action disabled">

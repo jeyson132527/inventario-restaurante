@@ -31,5 +31,19 @@ public class UsuarioService {
 
         return u;
     }
+        public java.util.List<Usuario> listar() {
+    return repository.findAll();
+    }
 
+    public Usuario guardar(Usuario usuario) {
+        return repository.save(usuario);
+    }
+
+    public Usuario buscarPorId(Long id) {
+        return repository.findById(id).orElse(null);
+    }
+
+    public void eliminar(Long id) {
+        repository.deleteById(id);
+    }
 }
