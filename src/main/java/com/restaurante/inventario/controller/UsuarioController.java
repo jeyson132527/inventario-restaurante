@@ -36,12 +36,11 @@ public class UsuarioController {
     }
 
     @PostMapping("/guardar")
-    public String guardar(@ModelAttribute Usuario usuario) {
+        @ResponseBody
+        public String guardar(@ModelAttribute Usuario usuario) {
 
-        usuarioService.guardar(usuario);
-
-        return "redirect:/usuarios";
-    }
+            return "Llegó al controlador";
+        }
 
     @GetMapping("/editar/{id}")
     public String editar(@PathVariable Long id, Model model) {
