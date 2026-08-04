@@ -4,9 +4,7 @@
       layout:decorate="~{layout/layout}">
 
 <head>
-
     <title>Usuario</title>
-
 </head>
 
 <body>
@@ -30,10 +28,11 @@
         <div class="card-body">
 
             <form th:action="@{/usuarios/guardar}"
-                  th:object="${usuario}"
                   method="post">
 
-                <input type="hidden" th:field="*{id}">
+                <input type="hidden"
+                       name="id"
+                       th:value="${usuario != null ? usuario.id : ''}">
 
                 <div class="mb-3">
 
@@ -46,7 +45,8 @@
                     <input
                             type="text"
                             class="form-control"
-                            th:field="*{nombre}"
+                            name="nombre"
+                            th:value="${usuario != null ? usuario.nombre : ''}"
                             required>
 
                 </div>
@@ -62,7 +62,8 @@
                     <input
                             type="text"
                             class="form-control"
-                            th:field="*{usuario}"
+                            name="usuario"
+                            th:value="${usuario != null ? usuario.usuario : ''}"
                             required>
 
                 </div>
@@ -78,7 +79,8 @@
                     <input
                             type="password"
                             class="form-control"
-                            th:field="*{password}"
+                            name="password"
+                            th:value="${usuario != null ? usuario.password : ''}"
                             required>
 
                 </div>
@@ -93,15 +95,17 @@
 
                     <select
                             class="form-select"
-                            th:field="*{rol}">
+                            name="rol">
 
-                        <option value="ADMIN">
+                        <option value="ADMIN"
+                                th:selected="${usuario != null and usuario.rol == 'ADMIN'}">
 
                             Administrador
 
                         </option>
 
-                        <option value="OPERADOR">
+                        <option value="OPERADOR"
+                                th:selected="${usuario != null and usuario.rol == 'OPERADOR'}">
 
                             Operador
 
@@ -116,7 +120,9 @@
                     <input
                             class="form-check-input"
                             type="checkbox"
-                            th:field="*{activo}">
+                            name="activo"
+                            value="true"
+                            th:checked="${usuario != null and usuario.activo}">
 
                     <label class="form-check-label">
 

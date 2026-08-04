@@ -36,11 +36,27 @@ public class UsuarioController {
     }
 
     @PostMapping("/guardar")
-        @ResponseBody
-        public String guardar(@ModelAttribute Usuario usuario) {
+public String guardar(
+        @RequestParam(required = false) Long id,
+        @RequestParam String nombre,
+        @RequestParam("usuario") String nombreUsuario,
+        @RequestParam String password,
+        @RequestParam String rol,
+        @RequestParam(required = false, defaultValue = "false") Boolean activo) {
 
-            return "Llegó al controlador";
-        }
+    Usuario usuario = new Usuario();
+
+    usuario.setId(id);
+    usuario.setNombre(nombre);
+    usuario.setUsuario(nombreUsuario);
+    usuario.setPassword(password);
+    usuario.setRol(rol);
+    usuario.setActivo(activo);
+
+    usuarioService.guardar(usuario);
+
+    return "redirect:/usuarios";
+}
 
     @GetMapping("/editar/{id}")
     public String editar(@PathVariable Long id, Model model) {
