@@ -1,0 +1,85 @@
+body{
+
+    background:#111111;
+
+    font-family:Segoe UI,Tahoma,Geneva,Verdana,sans-serif;
+
+}
+
+.login-card{
+
+    border:none;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 20px 40px rgba(0,0,0,.35);
+
+}
+
+.login-header{
+
+    background:#111111;
+
+    text-align:center;
+
+    padding:30px;
+
+}
+
+.login-header img{
+
+    width:170px;
+
+    margin-bottom:10px;
+
+}
+
+.login-header h3{
+
+    color:#D4AF37;
+
+    font-weight:bold;
+
+}
+
+.login-header p{
+
+    color:#cccccc;
+
+}
+
+.btn-coffee{
+
+    background:#D4AF37;
+
+    color:#111;
+
+    font-weight:bold;
+
+    border:none;
+
+}
+
+.btn-coffee:hover{
+
+    background:#c59b18;
+
+    color:white;
+
+}
+
+.form-control:focus{
+
+    border-color:#D4AF37;
+
+    box-shadow:0 0 0 .2rem rgba(212,175,55,.25);
+
+}
+
+.card-footer{
+
+    background:white;
+
+}
