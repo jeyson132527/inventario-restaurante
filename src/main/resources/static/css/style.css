@@ -1,96 +1,178 @@
-/* ==========================
-   SISTEMA INVENTARIO
-========================== */
+/* =======================================
+   COFFEE AND CC - SISTEMA DE INVENTARIO
+======================================= */
+
+:root{
+
+    --coffee:#111111;
+    --coffee2:#1a1a1a;
+    --gold:#D4AF37;
+    --gold-hover:#C89F2D;
+    --light:#F5F5F5;
+    --white:#FFFFFF;
+    --gray:#EAEAEA;
+
+}
+
+/* =======================================
+   GENERAL
+======================================= */
 
 body{
-    background:#f4f6f9;
+
+    background:var(--light);
+
     font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+
 }
 
-/* NAVBAR */
+h2,h3,h4,h5{
 
-.navbar{
-    height:65px;
-    box-shadow:0 2px 8px rgba(0,0,0,.15);
+    font-weight:700;
+
 }
 
-/* SIDEBAR */
+/* =======================================
+   NAVBAR
+======================================= */
+
+.navbar-coffee{
+
+    background:var(--coffee);
+
+    height:75px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.25);
+
+}
+
+.navbar-brand{
+
+    color:white !important;
+
+    text-decoration:none;
+
+}
+
+.navbar-brand img{
+
+    border-radius:10px;
+
+}
+
+/* =======================================
+   SIDEBAR
+======================================= */
 
 .sidebar{
 
-    background:#1e293b;
+    background:var(--coffee);
 
-    min-height:100vh;
+    min-height:calc(100vh - 75px);
 
-    padding-top:20px;
+}
+
+.sidebar .list-group{
+
+    border-radius:0;
 
 }
 
 .sidebar .list-group-item{
 
-    background:#1e293b;
+    background:transparent;
 
     color:white;
 
     border:none;
 
-    padding:15px;
-
-    font-size:16px;
+    padding:15px 20px;
 
     transition:.25s;
+
+    font-weight:500;
+
+}
+
+.sidebar .list-group-item i{
+
+    width:25px;
 
 }
 
 .sidebar .list-group-item:hover{
 
-    background:#16a34a;
+    background:var(--gold);
 
-    color:white;
+    color:black;
 
-    padding-left:25px;
+    padding-left:28px;
+
+    font-weight:bold;
 
 }
 
 .sidebar .active{
 
-    background:#15803d !important;
+    background:var(--gold)!important;
+
+    color:black!important;
 
 }
 
-/* TARJETAS */
+.sidebar .disabled{
+
+    opacity:.45;
+
+}
+
+/* =======================================
+   TARJETAS
+======================================= */
 
 .card{
 
     border:none;
 
-    border-radius:15px;
+    border-radius:18px;
 
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
 
-    transition:.3s;
+    transition:.30s;
 
 }
 
 .card:hover{
 
-    transform:translateY(-5px);
+    transform:translateY(-4px);
+
+}
+
+.card-header{
+
+    border-radius:18px 18px 0 0!important;
+
+    border:none;
+
+    font-weight:bold;
 
 }
 
 .card i{
 
-    font-size:45px;
+    font-size:42px;
 
 }
 
-/* TABLAS */
+/* =======================================
+   TABLAS
+======================================= */
 
 .table{
 
     background:white;
 
-    border-radius:12px;
+    border-radius:15px;
 
     overflow:hidden;
 
@@ -98,29 +180,119 @@ body{
 
 .table thead{
 
-    background:#16a34a;
+    background:var(--coffee);
 
     color:white;
 
 }
 
-/* BOTONES */
+.table-hover tbody tr:hover{
+
+    background:#FFF8E1;
+
+}
+
+/* =======================================
+   BOTONES
+======================================= */
 
 .btn{
 
     border-radius:10px;
 
-}
-
-/* TITULOS */
-
-h2,h3,h4{
-
-    font-weight:700;
+    font-weight:600;
 
 }
 
-/* FOOTER */
+.btn-success{
+
+    background:var(--gold);
+
+    color:black;
+
+    border:none;
+
+}
+
+.btn-success:hover{
+
+    background:var(--gold-hover);
+
+    color:white;
+
+}
+
+.btn-warning{
+
+    background:#F4B400;
+
+    border:none;
+
+    color:black;
+
+}
+
+.btn-danger{
+
+    background:#C62828;
+
+    border:none;
+
+}
+
+.btn-outline-warning{
+
+    border:2px solid var(--gold);
+
+    color:var(--gold);
+
+}
+
+.btn-outline-warning:hover{
+
+    background:var(--gold);
+
+    color:black;
+
+}
+
+/* =======================================
+   BADGES
+======================================= */
+
+.badge{
+
+    font-size:.80rem;
+
+    padding:7px 12px;
+
+}
+
+/* =======================================
+   FORMULARIOS
+======================================= */
+
+.form-control,
+
+.form-select{
+
+    border-radius:10px;
+
+}
+
+.form-control:focus,
+
+.form-select:focus{
+
+    border-color:var(--gold);
+
+    box-shadow:0 0 0 .15rem rgba(212,175,55,.25);
+
+}
+
+/* =======================================
+   FOOTER
+======================================= */
 
 .footer{
 
@@ -133,5 +305,71 @@ h2,h3,h4{
     color:#777;
 
     border-top:1px solid #ddd;
+
+    /* ===================================
+   DASHBOARD
+=================================== */
+
+.dashboard-card{
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    transition:.30s;
+
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 20px 35px rgba(0,0,0,.12);
+
+}
+
+.dashboard-icon{
+
+    width:80px;
+
+    height:80px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:#111111;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.dashboard-icon i{
+
+    color:#D4AF37;
+
+    font-size:34px;
+
+}
+
+.dashboard-card h6{
+
+    font-weight:bold;
+
+    color:#777;
+
+}
+
+.dashboard-card h2{
+
+    font-weight:700;
+
+    color:#111111;
+
+}
 
 }

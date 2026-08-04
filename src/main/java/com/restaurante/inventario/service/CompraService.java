@@ -5,6 +5,7 @@ import com.restaurante.inventario.repository.CompraRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.time.LocalDate;
 
 @Service
 public class CompraService {
@@ -41,8 +42,13 @@ public class CompraService {
         return repository.findAll();
     }
 
-    return repository.findByProductoNombreContainingIgnoreCase(nombre);
+        return repository.findByProductoNombreContainingIgnoreCase(nombre);
 
     }
 
+    public long obtenerComprasHoy(){
+
+        return repository.countByFecha(LocalDate.now());
+
+    }
 }

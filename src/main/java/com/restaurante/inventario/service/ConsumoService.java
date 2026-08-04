@@ -5,6 +5,7 @@ import com.restaurante.inventario.repository.ConsumoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.time.LocalDate;
 
 @Service
 public class ConsumoService {
@@ -32,5 +33,11 @@ public class ConsumoService {
     return repository.findTop5ByOrderByFechaDesc();
 
    }
+
+   public long obtenerConsumosHoy(){
+
+    return repository.countByFecha(LocalDate.now());
+
+    }
 
 }

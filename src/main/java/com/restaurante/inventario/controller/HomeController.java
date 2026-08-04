@@ -88,6 +88,30 @@ public class HomeController {
 
         model.addAttribute("listaStockBajo",
                kardexService.obtenerProductosStockBajo());
+
+        model.addAttribute("comprasHoy",
+                compraService.obtenerComprasHoy());
+
+        model.addAttribute("consumosHoy",
+                consumoService.obtenerConsumosHoy());
+
+        model.addAttribute("alertas",
+                kardexService.contarProductosStockBajo());
+
+        model.addAttribute("stockBajo",
+                kardexService.contarProductosStockBajo());
+
+        model.addAttribute("stockBajo",
+                kardexService.contarProductosStockBajo());
+
+        model.addAttribute("comprasHoy",
+                compraService.obtenerComprasHoy());
+
+        model.addAttribute("consumosHoy",
+                consumoService.obtenerConsumosHoy());
+
+        model.addAttribute("alertas",
+                kardexService.contarProductosStockBajo());
     }
 
 }
