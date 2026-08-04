@@ -77,9 +77,16 @@
 
                     <td>
 
+                        <a th:href="@{/compras/editar/{id}(id=${compra.id})}"
+                        class="btn btn-warning btn-sm">
+
+                            <i class="bi bi-pencil-square"></i>
+
+                        </a>
+
                         <a th:href="@{/compras/eliminar/{id}(id=${compra.id})}"
-                           class="btn btn-danger btn-sm"
-                           onclick="return confirm('¿Desea eliminar esta compra?');">
+                        class="btn btn-danger btn-sm"
+                        onclick="return confirm('¿Desea eliminar esta compra?');">
 
                             <i class="bi bi-trash"></i>
 

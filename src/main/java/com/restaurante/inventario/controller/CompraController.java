@@ -48,6 +48,15 @@ public class CompraController {
         return "redirect:/compras";
     }
 
+    @GetMapping("/editar/{id}")
+    public String editar(@PathVariable Long id, Model model) {
+
+        model.addAttribute("compra", compraService.buscarPorId(id));
+        model.addAttribute("productos", productoService.listar());
+
+        return "compras/nuevo";
+    }
+
     @GetMapping("/eliminar/{id}")
     public String eliminar(@PathVariable Long id) {
 
