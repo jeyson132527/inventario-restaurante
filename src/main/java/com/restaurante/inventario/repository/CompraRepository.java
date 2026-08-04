@@ -9,5 +9,6 @@ import java.util.List;
 public interface CompraRepository extends JpaRepository<Compra, Long>{
 
     List<Compra> findTop5ByOrderByFechaDesc();
+    List<Compra> findByProductoNombreContainingIgnoreCase(String nombre);
 
 }

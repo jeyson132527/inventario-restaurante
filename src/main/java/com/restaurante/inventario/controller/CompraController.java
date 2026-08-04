@@ -22,12 +22,15 @@ public class CompraController {
     }
 
     @GetMapping
-    public String listar(Model model) {
+    public String listar(
+            @RequestParam(required = false) String buscar,
+            Model model) {
 
-        model.addAttribute("compras", compraService.listar());
+        model.addAttribute("compras", compraService.buscar(buscar));
+        model.addAttribute("buscar", buscar);
 
         return "compras/index";
-    }
+    }   
 
     @GetMapping("/nuevo")
     public String nuevo(Model model) {

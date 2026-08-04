@@ -35,4 +35,14 @@ public class CompraService {
         return repository.findTop5ByOrderByFechaDesc();
     }
 
+    public List<Compra> buscar(String nombre) {
+
+    if (nombre == null || nombre.isBlank()) {
+        return repository.findAll();
+    }
+
+    return repository.findByProductoNombreContainingIgnoreCase(nombre);
+
+    }
+
 }
