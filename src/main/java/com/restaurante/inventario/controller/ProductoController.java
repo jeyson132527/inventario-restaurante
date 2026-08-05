@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/productos")
@@ -109,12 +111,33 @@ public class ProductoController {
     }
 
     @GetMapping("/eliminar/{id}")
-    public String eliminar(@PathVariable Long id) {
+        public String eliminar(@PathVariable Long id,
+                       RedirectAttributes redirectAttributes) {
+
+    try {
 
         productoService.eliminar(id);
 
-        return "redirect:/productos";
+        redirectAttributes.addFlashAttribute(
+                "success",
+                "Producto eliminado correctamente.");
+
+    } catch (DataIntegrityViolationException e) {
+
+        redirectAttributes.addFlashAttribute(
+                "error",
+                "No se puede eliminar el producto porque tiene compras o consumos registrados.");
+
+    } catch (Exception e) {
+
+    redirectAttributes.addFlashAttribute(
+            "error",
+            "No se puede eliminar el producto porque tiene movimientos registrados.");
+
     }
+
+    return "redirect:/productos";
+}
 
 @PostMapping("/guardar-modal")
 @ResponseBody

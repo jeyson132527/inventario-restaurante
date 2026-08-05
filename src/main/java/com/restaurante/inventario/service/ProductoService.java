@@ -5,6 +5,7 @@ import com.restaurante.inventario.repository.ProductoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import org.springframework.dao.DataIntegrityViolationException;
 
 @Service
 public class ProductoService {
@@ -28,8 +29,10 @@ public class ProductoService {
     }
 
     public void eliminar(Long id) {
-        repository.deleteById(id);
-    }
+
+    repository.deleteById(id);
+
+}
 
     public List<Producto> buscar(String nombre) {
 
